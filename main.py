@@ -68,6 +68,10 @@ class Hangman(qtw.QMainWindow):
             print("Non-Alpha character found.")
             qtw.QMessageBox.critical(self, "Invalid Character", "Only letters A-Z accepted.")
 
+        # Clear the previous input
+        self.ui.linInput.setText("")
+        self.ui.linInput.setFocus()
+
     def draw_board(self):
         # Update the guessed letters on screen
         guessed_word = ""
@@ -118,7 +122,6 @@ class Hangman(qtw.QMainWindow):
                 goal_word += let
             qtw.QMessageBox.information(self, "Winner!", "Winner! Congrats! The correct word was: {:}".format(goal_word))
             exit(0)
-
 
     def game_over(self):
         print("Running Game Over")
