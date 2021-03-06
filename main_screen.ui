@@ -261,5 +261,22 @@ padding: 5px;
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btnGuess</sender>
+   <signal>clicked()</signal>
+   <receiver>btnGuess</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>194</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
