@@ -12,8 +12,6 @@ puzzleBank = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "
               "Whiskey", "XRay", "Yankee", "Zulu"]
 
 letters_guessed = []
-
-visible_letters = []
 debugging = True
 
 
@@ -68,7 +66,7 @@ class Hangman(qtw.QMainWindow):
     def draw_board(self):
         # Update the guessed letters on screen
         guessed_word = ""
-        for letter in letters_guessed:
+        for letter in sorted(letters_guessed):
             guessed_word += "  " + letter
         self.ui.lblLetters.setText(guessed_word)
 
@@ -108,9 +106,12 @@ class Hangman(qtw.QMainWindow):
 
     def game_over(self):
         print("Running Game Over")
+
+        # Build the goal word to inform the loser, er.. user rather.
         goal_word = ""
         for let in self.puzzle:
             goal_word += let
+
         qtw.QMessageBox.information(self, "Game Over", "Game Over. The correct word was: {:}".format(goal_word))
         exit(0)
 
