@@ -7,14 +7,14 @@ from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 import random
 
-
 puzzleBank = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo",
               "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor",
               "Whiskey", "XRay", "Yankee", "Zulu"]
 
 letters_guessed = []
-wrong_guesses = 0
+
 visible_letters = []
+debugging = True
 
 
 def select_puzzle():
@@ -25,6 +25,7 @@ def select_puzzle():
 
 
 class Hangman(qtw.QMainWindow):
+    wrong_guesses = 0
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,21 +34,31 @@ class Hangman(qtw.QMainWindow):
         self.ui.setupUi(self)
         self.ui.btnGuess.clicked.connect(self.guess)
         self.ui.btnHead.setVisible(False)
+        self.ui.btnBody.setVisible(False)
+        self.ui.btnLeg1.setVisible(False)
+        self.ui.btnLeg2.setVisible(False)
+        self.ui.btnArm1.setVisible(False)
+        self.ui.btnArm2.setVisible(False)
         self.puzzle = select_puzzle()
 
     def guess(self):
+        if debugging:
+            print("Getting the input")
         guessing = self.ui.linInput.text()
         # Validate the input is a letter
         if guessing.isalpha():
+            if debugging:
+                print("Alpha input found.")
             if len(guessing) > 1:
-                print("More than 1 letter input. Exiting...")
+                if debugging:
+                    print("More than 1 letter input.")
                 qtw.QMessageBox.critical(self, "Too Many Letters", "You have Entered more than 1 letter. Try again.")
             else:
-                print("Letter found in input")
                 # Has the letter been guessed already?
                 if guessing.upper() in letters_guessed:
-                    print("Letter guessed already")
-                    qtw.QMessageBox.critical(self, "Letter Guessed Already", "You have already guessed that letter. Try again.")
+                    print("Letter guessed already.")
+                    qtw.QMessageBox.critical(self, "Letter Guessed Already",
+                                             "You have already guessed that letter. Try again.")
                 else:
                     # Add the guessed item to the list and redraw the board
                     print("New letter guessed: {:}".format(guessing))
@@ -55,10 +66,53 @@ class Hangman(qtw.QMainWindow):
                     self.draw_board()
 
     def draw_board(self):
-        word = ""
+        # Update the guessed letters on screen
+        guessed_word = ""
         for letter in letters_guessed:
-            word += "  " + letter
-        self.ui.lblLetters.setText(word)
+            guessed_word += "  " + letter
+        self.ui.lblLetters.setText(guessed_word)
+
+        # Draw the correctly guessed letters
+        correct_word = ""
+        for letter in self.puzzle:
+            if letter in letters_guessed:
+                print("Letter found!")
+                correct_word += letter
+            else:
+                print("Letter not found.")
+                correct_word += " _ "
+        self.ui.lblLettersGuessedTitle_2.setText(correct_word)
+
+        # Draw the man for any wrong letters
+        if letters_guessed[len(letters_guessed) - 1] not in self.puzzle:
+            self.wrong_guesses += 1
+            if self.wrong_guesses > 5:
+                print("Game Over")
+                self.ui.btnLeg2.setVisible(True)
+                self.game_over()
+            if self.wrong_guesses == 5:
+                print("Wrong answer 5. It's almost over.")
+                self.ui.btnLeg1.setVisible(True)
+            if self.wrong_guesses == 4:
+                print("Wrong answer 4.")
+                self.ui.btnArm2.setVisible(True)
+            if self.wrong_guesses == 3:
+                print("Wrong answer 3.")
+                self.ui.btnArm1.setVisible(True)
+            if self.wrong_guesses == 2:
+                print("Wrong answer 2.")
+                self.ui.btnBody.setVisible(True)
+            if self.wrong_guesses == 1:
+                print("Wrong answer 1.")
+                self.ui.btnHead.setVisible(True)
+
+    def game_over(self):
+        print("Running Game Over")
+        goal_word = ""
+        for let in self.puzzle:
+            goal_word += let
+        qtw.QMessageBox.information(self, "Game Over", "Game Over. The correct word was: {:}".format(goal_word))
+        exit(0)
 
 
 if __name__ == '__main__':

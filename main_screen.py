@@ -112,6 +112,76 @@ class Ui_MainWindow(object):
         self.lblLettersGuessedTitle_2.setText("")
         self.lblLettersGuessedTitle_2.setAlignment(QtCore.Qt.AlignCenter)
         self.lblLettersGuessedTitle_2.setObjectName("lblLettersGuessedTitle_2")
+        self.btnBody = QtWidgets.QPushButton(self.centralwidget)
+        self.btnBody.setGeometry(QtCore.QRect(230, 70, 16, 51))
+        self.btnBody.setStyleSheet("QPushButton {\n"
+"color: #333;\n"
+"border: 2px solid #555;\n"
+"border-radius: 5px;\n"
+"border-style: outset;\n"
+"background: qradialgradient(cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,radius: 1.35, stop: 0 #fff, stop: 1 #888\n"
+");\n"
+"padding: 5px;\n"
+"}")
+        self.btnBody.setText("")
+        self.btnBody.setFlat(True)
+        self.btnBody.setObjectName("btnBody")
+        self.btnArm1 = QtWidgets.QPushButton(self.centralwidget)
+        self.btnArm1.setGeometry(QtCore.QRect(240, 80, 41, 16))
+        self.btnArm1.setStyleSheet("QPushButton {\n"
+"color: #333;\n"
+"border: 2px solid #555;\n"
+"border-radius: 5px;\n"
+"border-style: outset;\n"
+"background: qradialgradient(cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,radius: 1.35, stop: 0 #fff, stop: 1 #888\n"
+");\n"
+"padding: 5px;\n"
+"}")
+        self.btnArm1.setText("")
+        self.btnArm1.setFlat(True)
+        self.btnArm1.setObjectName("btnArm1")
+        self.btnArm2 = QtWidgets.QPushButton(self.centralwidget)
+        self.btnArm2.setGeometry(QtCore.QRect(190, 80, 41, 16))
+        self.btnArm2.setStyleSheet("QPushButton {\n"
+"color: #333;\n"
+"border: 2px solid #555;\n"
+"border-radius: 5px;\n"
+"border-style: outset;\n"
+"background: qradialgradient(cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,radius: 1.35, stop: 0 #fff, stop: 1 #888\n"
+");\n"
+"padding: 5px;\n"
+"}")
+        self.btnArm2.setText("")
+        self.btnArm2.setFlat(True)
+        self.btnArm2.setObjectName("btnArm2")
+        self.btnLeg1 = QtWidgets.QPushButton(self.centralwidget)
+        self.btnLeg1.setGeometry(QtCore.QRect(240, 110, 21, 16))
+        self.btnLeg1.setStyleSheet("QPushButton {\n"
+"color: #333;\n"
+"border: 2px solid #555;\n"
+"border-radius: 5px;\n"
+"border-style: outset;\n"
+"background: qradialgradient(cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,radius: 1.35, stop: 0 #fff, stop: 1 #888\n"
+");\n"
+"padding: 5px;\n"
+"}")
+        self.btnLeg1.setText("")
+        self.btnLeg1.setFlat(True)
+        self.btnLeg1.setObjectName("btnLeg1")
+        self.btnLeg2 = QtWidgets.QPushButton(self.centralwidget)
+        self.btnLeg2.setGeometry(QtCore.QRect(210, 110, 21, 16))
+        self.btnLeg2.setStyleSheet("QPushButton {\n"
+"color: #333;\n"
+"border: 2px solid #555;\n"
+"border-radius: 5px;\n"
+"border-style: outset;\n"
+"background: qradialgradient(cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,radius: 1.35, stop: 0 #fff, stop: 1 #888\n"
+");\n"
+"padding: 5px;\n"
+"}")
+        self.btnLeg2.setText("")
+        self.btnLeg2.setFlat(True)
+        self.btnLeg2.setObjectName("btnLeg2")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 477, 21))
