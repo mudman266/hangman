@@ -4,7 +4,6 @@
 from main_screen import Ui_MainWindow
 
 from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
 import random
 
 puzzleBank = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo",
@@ -113,7 +112,7 @@ class Hangman(qtw.QMainWindow):
                 print("Wrong answer 1.")
                 self.ui.btnHead.setVisible(True)
 
-        # Handle winning
+        # Check for a winner
         if " _ " not in correct_word:
             print("Winner winner chicken dinner!")
             # Build the goal word to inform the winner!
